@@ -3,10 +3,22 @@ import { useSelector } from 'react-redux'
 
 import '../styles/header.scss'
 
-const Header = ({ searchMovies }) => {
+const Header = ({ searchMovies,searchParams,setSearchParams }) => {
   
   const { starredMovies } = useSelector((state) => state.starred)
 
+
+
+  
+
+
+  const getMovieQuery = (movieQuery) =>{
+
+    if ((movieQuery && movieQuery!==null)) {
+       searchMovies(movieQuery)
+    }
+  
+  }
   return (
     <header>
       <Link to="/" data-testid="home" onClick={() => searchMovies('')}>
@@ -32,7 +44,8 @@ const Header = ({ searchMovies }) => {
       <div className="input-group rounded">
         <Link to="/" onClick={(e) => searchMovies('')} className="search-link" >
           <input type="search" data-testid="search-movies"
-            onKeyUp={(e) => searchMovies(e.target.value)} 
+            value={searchParams}
+            onChange={(e) => getMovieQuery(e.target.value)} 
             className="form-control rounded" 
             placeholder="Search movies..." 
             aria-label="Search movies" 

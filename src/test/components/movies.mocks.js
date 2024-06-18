@@ -14,3 +14,4 @@ export const moviesMock = [
         'title': 'Interstellar'
     }
 ]
+

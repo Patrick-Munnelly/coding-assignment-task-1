@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import watchLaterSlice from '../data/watchLaterSlice'
 import Movie from './Movie'
 import '../styles/starred.scss'
+import { useEffect } from 'react'
 
 const WatchLater = ({viewTrailer}) => {
 
@@ -11,11 +12,17 @@ const WatchLater = ({viewTrailer}) => {
     const { remveAllWatchLater } = watchLaterSlice.actions
     const dispatch = useDispatch()
 
+
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
+
+
   return (
-    <div className="starred" data-testid="watch-later-div">
+    <div className="starred " data-testid="watch-later-div">
       {watchLater.watchLaterMovies.length > 0 && (<div data-testid="watch-later-movies" className="starred-movies">
         <h6 className="header">Watch Later List</h6>
-        <div className="row">
+        <div className="movies-grid">
         {watchLater.watchLaterMovies.map((movie) => (
           <Movie 
             movie={movie} 
@@ -25,8 +32,8 @@ const WatchLater = ({viewTrailer}) => {
         ))}
         </div>
 
-        <footer className="text-center">
-          <button className="btn btn-primary" onClick={() => dispatch(remveAllWatchLater())}>Empty list</button>
+        <footer className="text-center footer">
+          <button className="wbtn btn-primary" onClick={() => dispatch(remveAllWatchLater())}>Empty list</button>
         </footer>
       </div>)}
 

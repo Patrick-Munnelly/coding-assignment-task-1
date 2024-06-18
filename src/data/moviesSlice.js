@@ -7,7 +7,7 @@ export const fetchMovies = createAsyncThunk('fetch-movies', async (apiUrl) => {
 
 const moviesSlice = createSlice({
     name: 'movies',
-    initialState: { 
+    initialState: {
         movies: [],
         fetchStatus: '',
     },
